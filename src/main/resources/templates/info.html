@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品詳細</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<header th:replace="header"></header>
+	<hr>
+	<h1>商品詳細</h1>
+	
+		<a href="/items">全商品</a>
+		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
+	</nav>
+	
+	<main>
+		
+		
+		<table border="1">
+			<tr>
+				<th>NO</th>
+				<th>商品</th>
+				<th>値段</th>
+				<th></th>
+			
+			
+			</tr>
+			<tr>
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.price}"></td>	
+				
+				<th>
+					<form action="/cart/add" method="post">
+						<input type="hidden" name="itemId"
+						th:value="${item.id}">
+						<button>カートに追加</button>
+						</form>
+				</th>	
+			</tr>
+			
+			</table><br>
+			
+			<table border="1" th:each="r:${reviewList}"  >
+				<tr>
+					<th>満足度</th>
+					<th th:text="${'★' + r.reviewpoint}" style="color:gold"></th>
+				</tr>
+			<tr>
+				<th>レビュー</th>
+				<td  th:utext="${r.review}"></td>
+			</tr><br>
+			
+		</table><br>
+		
+		<div  th:if="${se} == 1">
+			<form th:action="@{/items/{ItemId}/info(ItemId=${item.id})}" method="get">
+		<table border="1">
+			<tr>
+				<th>満足度</th>
+				<td>
+					<select name="reviewpoint">
+						<option value="0">★0</option>
+						<option value="1">★1</option>
+						<option value="2">★2</option>
+						<option value="3">★3</option>
+						<option value="4">★4</option>
+						<option value="5">★5</option>
+					</select>
+				</td>
+			
+			</tr>
+			<tr>
+				<th>レビュー本文</th>
+				<td><textarea name="review"></textarea></td>
+			</tr>
+		</table>
+			
+		<input type="hidden" name="itemId" th:value="${item.id}">
+		<input type="hidden" name="se"  value="2">
+						<button>レビュー投稿</button>
+					</form>
+		</div>
+		
+		<div  th:unless="${se}==1"><br><span th:text="${me}" ></span>
+			<form th:action="@{/items/{ItemId}/info(ItemId=${item.id})}" method="post">
+				
+				<table border="1" th:each="r:${reviews}"  >
+				<tr>
+					<th>満足度</th>
+					<th th:text="${'★' + r.reviewpoint}" style="color:gold"></th>
+				</tr>
+			<tr>
+				<th>レビュー</th>
+				<td  th:utext="${r.review}"></td>
+			</tr><br>
+			
+			
+		</table>		
+		
+		<input type="hidden" name="itemId" th:value="${item.id}">
+		<input type="hidden"  name ="reviewpoint" th:value="${reviewpoint}">	
+		<input type="hidden" name ="review" th:value="${review}">		
+						<button>はい</button>
+					</form>
+		</div>
+			
+		<form action="/items" method="get">
+			<button>商品一覧</button>
+		</form>
+		
+		
+			</main>
+
+
+</body>
+</html>

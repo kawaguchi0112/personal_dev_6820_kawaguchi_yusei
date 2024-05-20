@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規登録</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+		<h1>新規登録</h1>
+		<div th:each="memo:${list}">
+			[[${memo}]] <br>
+		</div>
+		<form action="/sigin" method="post">
+			<table border="1">
+				<tr>
+					<th>お名前</th>
+					<td>
+						<input type="text" name="name">
+					</td>
+				</tr>
+				<tr>
+					<th>住所</th>
+					<td>
+						<input type="text" name="address">
+					</td>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<td>
+						<input type="text" name="tel">
+					</td>
+				</tr>
+				<tr>
+					<th>e-mail</th>
+					<td>
+						<input type="text" name="email">
+					</td>
+				</tr>
+				<tr>
+					<th>パスワード</th>
+					<td>
+						<input type="text" name="pass">
+					</td>
+				</tr>
+			</table>
+			
+			<input type="hidden" name="point" th:value="100">
+			<button>登録</button>
+		</form>
+
+
+</body>
+</html>
