@@ -39,9 +39,10 @@
 						</form>
 				</th>	
 			</tr>
-			
-			</table><br>
-			
+			</table>
+			<th:block th:if="${avgreviewpoint != null}">
+			レビューの平均<span  th:text="${'★' +avgreviewpoint}" style="color:gold" ></span>
+			</th:block>
 			<table border="1" th:each="r:${reviewList}"  >
 				<tr>
 					<th>満足度</th>
@@ -50,10 +51,8 @@
 			<tr>
 				<th>レビュー</th>
 				<td  th:utext="${r.review}"></td>
-			</tr><br>
-			
-		</table><br>
-		
+			</tr>
+		</table>
 		<div  th:if="${se} == 1">
 			<form th:action="@{/items/{ItemId}/info(ItemId=${item.id})}" method="get">
 		<table border="1">
@@ -76,12 +75,12 @@
 				<td><textarea name="review"></textarea></td>
 			</tr>
 		</table>
-			
 		<input type="hidden" name="itemId" th:value="${item.id}">
 		<input type="hidden" name="se"  value="2">
 						<button>レビュー投稿</button>
 					</form>
 		</div>
+		
 		
 		<div  th:unless="${se}==1"><br><span th:text="${me}" ></span>
 			<form th:action="@{/items/{ItemId}/info(ItemId=${item.id})}" method="post">

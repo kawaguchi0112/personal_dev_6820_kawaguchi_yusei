@@ -89,9 +89,7 @@ public class OrderController {
 
 		model.addAttribute("p", p);
 
-		c.setPoint(c.getPoint() - points);
-
-		customerRepository.save(c);
+		model.addAttribute("points", points);
 
 		model.addAttribute("customer", c);
 
@@ -104,6 +102,7 @@ public class OrderController {
 			@RequestParam("name") String name,
 			@RequestParam("address") String address,
 			@RequestParam("email") String email,
+			@RequestParam("points") Integer points,
 			Model model) {
 
 		// 1. お客様情報をDBに格納する
@@ -133,9 +132,12 @@ public class OrderController {
 		}
 		orderDetailRepository.saveAll(orderDetails);
 
-		int p = c.getPoint() + (int) (cart.getTotalPrice() * 0.01);
+		int tp = c.getPoint() + (int) (cart.getTotalPrice() * 0.01) - points;
 
-		c.setPoint(p);
+		c.setPoint(tp);
+
+		int getPoint = (int) (cart.getTotalPrice() * 0.01);
+		model.addAttribute("getPoint", getPoint);
 
 		customerRepository.save(c);
 

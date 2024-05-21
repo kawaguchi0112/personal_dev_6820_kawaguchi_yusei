@@ -17,7 +17,7 @@
 		<a th:text="${customer.point}"></a><br>
 		<input type="number" name="points" value="0">ポイントを使用する　<br>
 		<div th:each="memo:${mess}">
-			[[${memo}]] <br>
+		<span  th:text="${memo}" style="color:red" ></span> <br>
 		</div>
 		
 		<hr>

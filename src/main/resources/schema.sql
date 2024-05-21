@@ -18,7 +18,8 @@ CREATE TABLE items
 id SERIAL PRIMARY KEY,	
 category_id INTEGER,	
 name TEXT,       	
-price INTEGER   	                                
+price INTEGER,
+avgpoint TEXT  	                                
 );
 -- 顧客テーブル　	
 CREATE TABLE customers	

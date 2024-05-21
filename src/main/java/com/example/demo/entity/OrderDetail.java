@@ -29,6 +29,14 @@ public class OrderDetail {
 	public OrderDetail(Integer orderId, Integer itemId, Integer quantity) {
 		this.orderId = orderId;
 		this.itemId = itemId;
+		this.setQuantity(quantity);
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 }

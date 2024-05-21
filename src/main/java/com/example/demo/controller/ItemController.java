@@ -84,6 +84,22 @@ public class ItemController {
 
 		model.addAttribute("reviewList", reviewList);
 
+		double avgreviewpoint = 0;
+		double poin = 0;
+
+		if (reviewList.size() != 0) {
+			for (Reviews r : reviewList) {
+				poin += r.getReviewpoint();
+			}
+			avgreviewpoint = poin / reviewList.size();
+
+			model.addAttribute("avgreviewpoint", String.format("%.1f", avgreviewpoint));
+		}
+
+		item.setAvgpoint(String.format("%.1f", avgreviewpoint));
+
+		itemRepository.save(item);
+
 		if (se != 1) {
 
 			Reviews reviews = new Reviews(review, reviewpoint);
