@@ -2,54 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>新規登録</title>
+<title>マイページ</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 		<header th:replace="header"></header>
-	<hr>
-		<h1>新規登録</h1>
-		<div th:each="memo:${list}">
-			[[${memo}]] <br>
-		</div>
-		<form action="/sigin" method="post">
+<h3>お客様情報</h3>
+<form action="/Mypage" method="post">
 			<table border="1">
 				<tr>
 					<th>お名前</th>
 					<td>
-						<input type="text" name="name">
+						<input type="text" name="name" th:value="${customer.name}">
 					</td>
 				</tr>
 				<tr>
 					<th>住所</th>
 					<td>
-						<input type="text" name="address">
+						<input type="text" name="address" th:value="${customer.address}">
 					</td>
 				</tr>
 				<tr>
 					<th>電話番号</th>
 					<td>
-						<input type="text" name="tel">
+						<input type="text" name="tel" th:value="${customer.tel}">
 					</td>
 				</tr>
 				<tr>
 					<th>e-mail</th>
 					<td>
-						<input type="text" name="email">
+						<input type="text" name="email" th:value="${customer.email}">
 					</td>
 				</tr>
 				<tr>
 					<th>パスワード</th>
 					<td>
-						<input type="text" name="pass">
+						<input type="text" name="pass" th:value="${customer.pass}">
+					</td>
+				</tr>
+				<tr>
+					<th>保持ポイント</th>
+					<td th:text="${customer.point}">
 					</td>
 				</tr>
 			</table>
-			
-			<input type="hidden" name="point" th:value="100">
-			<button>登録</button>
-		</form>
-
-
+			<button>更新</button>
+			</form>
 </body>
 </html>

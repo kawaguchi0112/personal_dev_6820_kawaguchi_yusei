@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class ItemController {
 			@RequestParam(name = "sort", defaultValue = "") String sort,
 			@RequestParam(name = "keyword", defaultValue = "") String keyword,
 			@RequestParam(name = "maxPrice", defaultValue = "") Integer maxPrice,
+			@RequestParam(name = "s", defaultValue = "1") Integer s,
 			Model model) {
 		List<Category> categoryList = categoryRepository.findAll();
 		model.addAttribute("categories", categoryList);
@@ -44,22 +46,34 @@ public class ItemController {
 		model.addAttribute("maxPrice", maxPrice);
 		model.addAttribute("keyword", keyword);
 
-		if (maxPrice != null && !keyword.equals("")) {
-			itemList = itemRepository.findByPriceLessThanEqualAndNameContaining(maxPrice, keyword);
-		} else if (maxPrice != null) {
-			itemList = itemRepository.findByPriceLessThanEqual(maxPrice);
-		} else if (keyword != null) {
-			itemList = itemRepository.findByNameContaining(keyword);
+		itemList = itemRepository.findAll();
+
+		if (s == 1) {
+			if (maxPrice != null && !keyword.equals("")) {
+				itemList = itemRepository.findByPriceLessThanEqualAndNameContaining(maxPrice, keyword);
+			} else if (maxPrice != null) {
+				itemList = itemRepository.findByPriceLessThanEqual(maxPrice);
+			} else if (keyword != null) {
+				itemList = itemRepository.findByNameContaining(keyword);
+			}
+			if (sort.equals("priceAsc")) {
+				itemList = itemRepository.findAllByOrderByPriceAsc();
+			}
+			if (sort.equals("pointDesc")) {
+				itemList = itemRepository.findAllByOrderByAvgpointDesc();
+			}
 		}
-		if (categoryId == null) {
-			itemList = itemRepository.findAll();
-		} else {
-			itemList = itemRepository.findByCategoryId(categoryId);
+
+		if (s == 2) {
+			if (categoryId != null) {
+				itemList = itemRepository.findByCategoryId(categoryId);
+			} else {
+				itemList = itemRepository.findAll();
+			}
 		}
-		if (sort.equals("priceAsc")) {
-			itemList = itemRepository.findAllByOrderByPriceAsc();
-		}
+
 		model.addAttribute("items", itemList);
+		model.addAttribute("s", s);
 
 		return "items";
 
@@ -76,6 +90,17 @@ public class ItemController {
 		Item item = itemRepository.findById(id).get();
 		model.addAttribute("item", item);
 		model.addAttribute("se", se);
+
+		List<Item> list = itemRepository.findByCategoryId(item.getCategoryId());
+
+		List<Item> existsItem = new ArrayList<>();
+
+		for (Item lists : list) {
+			if (lists.getId() != id) {
+				existsItem.add(lists);
+			}
+		}
+		model.addAttribute("list", existsItem);
 
 		model.addAttribute("review", review);
 		model.addAttribute("reviewpoint", reviewpoint);
@@ -96,7 +121,7 @@ public class ItemController {
 			model.addAttribute("avgreviewpoint", String.format("%.1f", avgreviewpoint));
 		}
 
-		item.setAvgpoint(String.format("%.1f", avgreviewpoint));
+		item.setAvgpoint(avgreviewpoint);
 
 		itemRepository.save(item);
 

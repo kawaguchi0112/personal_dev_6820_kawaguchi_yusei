@@ -6,9 +6,8 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-	<header>
-		<h1>サンプルショッピング</h1>
-	</header>
+		<header th:replace="header"></header>
+	<hr>
 	<main>
 		<form action="/login" method="post">
 			<input type="text" name="email" placeholder="メールアドレス"><br>

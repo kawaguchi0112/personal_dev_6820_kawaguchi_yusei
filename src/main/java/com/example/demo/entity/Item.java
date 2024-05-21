@@ -22,7 +22,7 @@ public class Item {
 
 	private Integer price;
 
-	private String avgpoint;
+	private double avgpoint;
 
 	@Transient
 	private Integer quantity;
@@ -59,12 +59,20 @@ public class Item {
 		this.quantity = quantity;
 	}
 
-	public String getAvgpoint() {
+	public double getAvgpoint() {
 		return avgpoint;
 	}
 
-	public void setAvgpoint(String avgreviewpoint) {
+	public void setAvgpoint(double avgreviewpoint) {
 		this.avgpoint = avgreviewpoint;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }

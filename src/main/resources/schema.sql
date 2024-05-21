@@ -19,7 +19,7 @@ id SERIAL PRIMARY KEY,
 category_id INTEGER,	
 name TEXT,       	
 price INTEGER,
-avgpoint TEXT  	                                
+avgpoint DECIMAL(2,1)                               
 );
 -- 顧客テーブル　	
 CREATE TABLE customers	

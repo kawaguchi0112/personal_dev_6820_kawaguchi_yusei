@@ -1,5 +1,38 @@
 <header>
 	<h1><a href="/items">Bチームショッピング</h1></a>
+	<th:block th:if="${@account.name!=null}">
 	<span th:text="${@account.name}+'さんがログイン中'"></span>
 	<a href="/logout">ログアウト</a>
+	</th:block>
+	
+	<nav id="nav">
+    <ul>
+        <li><a href="/login">ログイン</a></li>
+        <li><a href="/Mypage">マイページ</a></li>
+        <li><a href="/order">カート</a></li>
+        <li><a href="/sigin">新規登録</a></li>
+        <li><a href="/logout">ログアウト</a></li>
+    </ul>
+</nav>
+
+<div id="hamburger">
+     
+    <span class="inner_line" id="line1"></span>
+      
+    <span class="inner_line" id="line2"></span>
+      
+    <span class="inner_line" id="line3"></span>
+</div>
+
+<script>
+	function hamburger() {
+  document.getElementById('line1').classList.toggle('line_1');
+  document.getElementById('line2').classList.toggle('line_2');
+  document.getElementById('line3').classList.toggle('line_3');
+  document.getElementById('nav').classList.toggle('in');
+}
+document.getElementById('hamburger').addEventListener('click' , function () {
+  hamburger();
+} );
+</script>
 </header>

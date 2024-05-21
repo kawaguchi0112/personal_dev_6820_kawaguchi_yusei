@@ -18,4 +18,6 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 	List<Item> findAllByOrderByPriceAsc();
 
+	List<Item> findAllByOrderByAvgpointDesc();
+
 }
