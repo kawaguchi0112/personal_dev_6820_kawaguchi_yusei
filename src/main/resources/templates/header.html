@@ -2,12 +2,13 @@
 	<h1><a href="/items">Bチームショッピング</h1></a>
 	<th:block th:if="${@account.name!=null}">
 	<span th:text="${@account.name}+'さんがログイン中'"></span>
-	<a href="/logout">ログアウト</a>
+	<span id="rigth" th:text="'現在の所持ポイントは'+${@account.point}+'です'" style="color: yellowgreen;"></span>	
 	</th:block>
 	
 	<nav id="nav">
     <ul>
         <li><a href="/login">ログイン</a></li>
+        <li><a href="/items">トップ</a></li>
         <li><a href="/Mypage">マイページ</a></li>
         <li><a href="/order">カート</a></li>
         <li><a href="/sigin">新規登録</a></li>

@@ -27,6 +27,18 @@ public class Cart {
 		return total;
 	}
 
+	public void adds(Integer itemId, Integer quantity) {
+		Item existsItem = null;
+
+		for (Item item : itemList) {
+			if (item.getId() == itemId) {
+				existsItem = item;
+				break;
+			}
+		}
+		existsItem.setQuantity(quantity);
+	}
+
 	public void add(Item newItem) {
 		Item existsItem = null;
 

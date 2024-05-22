@@ -15,7 +15,7 @@
 		<form action="/order/confirm" method="post">
 		所持ポイント
 		<a th:text="${customer.point}"></a><br>
-		<input type="number" name="points" value="0">ポイントを使用する　<br>
+		<input type="number" name="points" value="0" min="0">ポイントを使用する　<br>
 		<div th:each="memo:${mess}">
 		<span  th:text="${memo}" style="color:red" ></span> <br>
 		</div>

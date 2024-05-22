@@ -10,8 +10,7 @@
 	<hr>
 	<h1>商品詳細</h1>
 	
-		<a href="/items">全商品</a>
-		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
+	
 	</nav>
 	
 	<main>
@@ -22,8 +21,8 @@
 				<th>NO</th>
 				<th>商品</th>
 				<th>値段</th>
-				<th>レビュー平均</th>
-				<th></th>
+				<th class="t">レビュー平均</th>
+				<th class="t"></th>
 			
 			
 			</tr>
@@ -46,19 +45,19 @@
 			</tr>
 			</table>
 			
-			<table border="1" th:each="r:${reviewList}"  >
+			<table border="1">
 				<tr>
-					<th>満足度</th>
-					<th th:text="${'★' + r.reviewpoint}" style="color:gold"></th>
+					<th  class="t">満足度</th>
+					<th>レビュー</th>
 				</tr>
-			<tr>
-				<th>レビュー</th>
+			<tr th:each="r:${reviewList}">
+				<td  class="t" th:text="${'★' + r.reviewpoint}" style="color:gold"></td>				
 				<td  th:utext="${r.review}"></td>
 			</tr>
 		</table>
 		<div  th:if="${se} == 1">
 			<form th:action="@{/items/{ItemId}/info(ItemId=${item.id})}" method="get">
-		<table border="1">
+		<br><table border="1">
 			<tr>
 				<th>満足度</th>
 				<td>
@@ -78,10 +77,16 @@
 				<td><textarea name="review"></textarea></td>
 			</tr>
 		</table>
+			
+			<div style="display: inline-flex">
 		<input type="hidden" name="itemId" th:value="${item.id}">
 		<input type="hidden" name="se"  value="2">
 						<button>レビュー投稿</button>
 					</form>
+					<form action="/items" method="get">
+			<button>商品一覧</button>
+		</form>
+			</div>
 		</div>
 		
 		
@@ -106,16 +111,16 @@
 		<input type="hidden" name ="review" th:value="${review}">		
 						<button>はい</button>
 					</form>
-		</div>
+	
 			
 		<form action="/items" method="get">
 			<button>商品一覧</button>
 		</form>
-		
+		</div>
 		<hr>
 		
 		<hr>
-		同カテゴリー商品
+		<h2>同カテゴリーの商品</h2>
 		
 		<table border="1">
 			<tr>

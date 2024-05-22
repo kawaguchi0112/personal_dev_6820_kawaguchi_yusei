@@ -18,6 +18,7 @@ import com.example.demo.entity.OrderDetail;
 import com.example.demo.model.Account;
 import com.example.demo.model.Cart;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.OrderRepository;
 
@@ -39,6 +40,9 @@ public class OrderController {
 	@Autowired
 	OrderDetailRepository orderDetailRepository;
 
+	@Autowired
+	ItemRepository itemRepository;
+
 	@GetMapping("/order")
 	public String index(Model model) {
 
@@ -55,6 +59,26 @@ public class OrderController {
 		model.addAttribute("customer", customer);
 
 		return "customerForm";
+	}
+
+	@PostMapping("/cart/adds")
+	public String addsCart(
+			@RequestParam(name = "itemId") Integer[] itemId,
+			@RequestParam(name = "quantity") Integer[] quantity,
+			Model model) {
+
+		if (cart.getItems() == null || cart.getItems().size() == 0) {
+			model.addAttribute("memo", "商品がありません");
+			return "cart";
+
+		}
+
+		for (int i = 0; i < itemId.length; i++) {
+			cart.adds(itemId[i], quantity[i]);
+		}
+
+		return "redirect:/order";
+
 	}
 
 	// 注文内容およびお客様情報内容の確認画面を表示
@@ -76,11 +100,8 @@ public class OrderController {
 		Customer c = customer.get(0);
 
 		if (c.getPoint() < points) {
-			List<Customer> customerList = customerRepository.findByEmail(account.getEmail());
 
-			Customer cus = customerList.get(0);
-
-			model.addAttribute("customer", cus);
+			model.addAttribute("customer", c);
 			model.addAttribute("mess", "ポイントが足りません");
 			return "customerForm";
 		}
@@ -140,6 +161,7 @@ public class OrderController {
 		model.addAttribute("getPoint", getPoint);
 
 		customerRepository.save(c);
+		account.setPoint(tp);
 
 		// セッションスコープのカート情報をクリアする
 		cart.clear();

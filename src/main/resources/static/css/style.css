@@ -65,10 +65,10 @@ button:hover {
     position: absolute;
     top: 0;
     /*ナビメニューを左に隠した状態になる*/
-    left: -40%;
-    width: 40%;
+    left: -20%;
+    width: 20%;
     height: 100vh;
-    background: #ffffff;
+    background: rgb(255, 255, 0);
     /*０.7秒かけてナビメニューがスライドする*/
     transition: .7s;
 }
@@ -143,3 +143,19 @@ button:hover {
     transform: rotate(45deg);
     bottom: 0;
   }
+/*右寄せ*/  
+ .rigth{
+  position: absolute;
+ right: 30px;
+}
+
+.t{
+	width: 20%;
+	}
+	
+.e{
+	width: 10%;
+		}
+.te{
+	width: 30%;
+		}

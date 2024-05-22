@@ -9,6 +9,7 @@ public class Account {
 	private String email;
 	private String pass;
 	private String name;
+	private Integer point;
 
 	public Account() {
 
@@ -41,6 +42,14 @@ public class Account {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getPoint() {
+		return point;
+	}
+
+	public void setPoint(Integer point) {
+		this.point = point;
 	}
 
 }

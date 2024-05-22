@@ -58,6 +58,7 @@ public class AccountController {
 		account.setEmail(customer.getEmail());
 		account.setPass(customer.getPass());
 		account.setName(customer.getName());
+		account.setPoint(customer.getPoint());
 
 		return "redirect:/items";
 	}
