@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Customer;
+import com.example.demo.entity.Favorite;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.Reviews;
+import com.example.demo.model.Account;
 import com.example.demo.repository.CategoryRepository;
+import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.FavoriteRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.ReviewRepository;
 
@@ -29,6 +34,14 @@ public class ItemController {
 
 	@Autowired
 	ReviewRepository reviewRepository;
+	@Autowired
+	CustomerRepository customerRepository;
+
+	@Autowired
+	FavoriteRepository favoriteRepository;
+
+	@Autowired
+	Account account;
 
 	@GetMapping("/items")
 	public String index(
@@ -72,11 +85,35 @@ public class ItemController {
 			}
 		}
 
+		List<Customer> customerList = customerRepository.findByEmail(account.getEmail());
+		Customer customer = customerList.get(0);
+
+		List<Favorite> lo = favoriteRepository.findByCustomerId(customer.getId());
+
+		String existsItem = "";
+
+		List<Item> aa = new ArrayList<>();
+
+		for (Item lists : itemList) {
+			for (Favorite li : lo) {
+				if (lists.getId() == li.getItemId()) {
+					existsItem = "★";
+					break;
+				} else {
+					existsItem = "";
+				}
+			}
+			Item itemstar = new Item(lists.getId(), lists.getName(), lists.getPrice(), lists.getAvgpoint(),
+					existsItem);
+			aa.add(itemstar);
+		}
+
+		model.addAttribute("aa", aa);
+
 		model.addAttribute("items", itemList);
 		model.addAttribute("s", s);
 
 		return "items";
-
 	}
 
 	@GetMapping("/items/{id}/info")

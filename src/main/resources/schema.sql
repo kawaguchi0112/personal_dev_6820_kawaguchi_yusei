@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS orders;	
 DROP TABLE IF EXISTS order_details;
 DROP TABLE IF EXISTS reviews;	
+DROP TABLE IF EXISTS favorites;	
 
 -- カテゴリーテーブル	
 CREATE TABLE categories	
@@ -19,7 +20,8 @@ id SERIAL PRIMARY KEY,
 category_id INTEGER,	
 name TEXT,       	
 price INTEGER,
-avgpoint DECIMAL(2,1)                               
+avgpoint DECIMAL(2,1),
+favorite TEXT                               
 );
 -- 顧客テーブル　	
 CREATE TABLE customers	
@@ -30,7 +32,8 @@ address TEXT,
 tel TEXT,             	
 email TEXT,          	
 point INTEGER ,
-pass TEXT 	
+pass TEXT,
+favorite INTEGER	
 );                             	
 -- 注文テーブル   	
 CREATE TABLE orders	
@@ -56,4 +59,12 @@ id SERIAL PRIMARY KEY,
 item_id INTEGER,	
 review TEXT,        	
 reviewpoint INTEGER                              	
- );                               	                    
+ );     
+ 
+  --お気に入り                          	
+CREATE TABLE favorites	
+(                                	
+id SERIAL PRIMARY KEY,	
+customer_id INTEGER,	
+item_id INTEGER	        	                             	
+ );                             	                    

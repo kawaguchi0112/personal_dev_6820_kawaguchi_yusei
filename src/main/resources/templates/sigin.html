@@ -10,7 +10,7 @@
 	<hr>
 		<h1>新規登録</h1>
 		<div th:each="memo:${list}">
-			[[${memo}]] <br>
+			<span  th:text="${memo}" style="color:red" ></span> <br>
 		</div>
 		<form action="/sigin" method="post">
 			<table border="1">

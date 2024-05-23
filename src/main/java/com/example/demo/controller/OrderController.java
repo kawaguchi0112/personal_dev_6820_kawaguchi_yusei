@@ -63,8 +63,9 @@ public class OrderController {
 
 	@PostMapping("/cart/adds")
 	public String addsCart(
-			@RequestParam(name = "itemId") Integer[] itemId,
-			@RequestParam(name = "quantity") Integer[] quantity,
+			@RequestParam(name = "itemId", defaultValue = "") Integer[] itemId,
+			@RequestParam(name = "quantity", defaultValue = "1") Integer[] quantity,
+			@RequestParam(name = "o", defaultValue = "0") Integer o,
 			Model model) {
 
 		if (cart.getItems() == null || cart.getItems().size() == 0) {
@@ -77,6 +78,9 @@ public class OrderController {
 			cart.adds(itemId[i], quantity[i]);
 		}
 
+		if (o == 1) {
+			return "redirect:/items";
+		}
 		return "redirect:/order";
 
 	}
@@ -87,7 +91,7 @@ public class OrderController {
 			@RequestParam(name = "name") String name,
 			@RequestParam(name = "address") String address,
 			@RequestParam(name = "email") String email,
-			@RequestParam(name = "points") Integer points,
+			@RequestParam(name = "points", defaultValue = "0") Integer points,
 			Model model) {
 
 		model.addAttribute("dename", name);
@@ -103,6 +107,13 @@ public class OrderController {
 
 			model.addAttribute("customer", c);
 			model.addAttribute("mess", "ポイントが足りません");
+			return "customerForm";
+		}
+
+		if (cart.getTotalPrice() < points) {
+
+			model.addAttribute("customer", c);
+			model.addAttribute("mess", "ポイントを使いすぎています.");
 			return "customerForm";
 		}
 
@@ -136,7 +147,7 @@ public class OrderController {
 
 		// 2. 注文情報をDBに格納する
 		Order order = new Order(
-				customer.getId(),
+				c.getId(),
 				LocalDate.now(),
 				cart.getTotalPrice());
 		orderRepository.save(order);

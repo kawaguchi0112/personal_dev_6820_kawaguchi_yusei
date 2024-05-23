@@ -9,6 +9,9 @@
 		<header th:replace="header"></header>
 <h3>お客様情報</h3>
 <form action="/Mypage" method="post">
+	<div th:each="memo:${list}">
+	<span  th:text="${memo}" style="color:red" ></span> <br>
+	</div>
 			<table border="1">
 				<tr>
 					<th>お名前</th>

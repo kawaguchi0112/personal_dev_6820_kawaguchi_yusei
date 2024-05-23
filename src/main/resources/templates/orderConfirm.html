@@ -27,6 +27,9 @@
 		<td th:text="${item.quantity}"></td>
 		<td th:text="${item.price*item.quantity}"></td>
 	</tr>
+	<tr>
+		<td align="right" colspan="5" th:text="'総計:'+${@cart.totalPrice}"></td>
+	</tr>
 	<td>
 		<td>
 		</td><td>

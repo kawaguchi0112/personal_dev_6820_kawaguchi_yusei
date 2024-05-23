@@ -90,6 +90,10 @@ public class MypageController {
 
 		model.addAttribute("customer", customer);
 
+		List<Customer> emailList = customerRepository.findByEmail(email);
+
+		List<Customer> telList = customerRepository.findByTel(tel);
+
 		List<String> list = new ArrayList<>();
 
 		if (name.equals("")) {
@@ -100,10 +104,20 @@ public class MypageController {
 		}
 		if (tel.equals("")) {
 			list.add("電話番号は必須です");
+		} else if (telList != null && telList.size() > 0) {
+			Customer newtel = telList.get(0);
+			if (newtel.getId() != customer.getId()) {
+				list.add("その電話番号は登録済みです");
+			}
 		}
 
 		if (email.equals("")) {
 			list.add("メールアドレスは必須です");
+		} else if (emailList != null && emailList.size() > 0) {
+			Customer newemail = emailList.get(0);
+			if (newemail.getId() != customer.getId()) {
+				list.add("そのメールアドレスは登録済みです");
+			}
 		}
 
 		if (pass.equals("")) {
@@ -112,7 +126,7 @@ public class MypageController {
 
 		if (list.size() > 0) {
 			model.addAttribute("list", list);
-			return "sigin";
+			return "Mypage";
 		}
 
 		customer.setName(name);

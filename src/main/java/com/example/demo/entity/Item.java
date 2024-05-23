@@ -24,8 +24,23 @@ public class Item {
 
 	private double avgpoint;
 
+	private String favorite;
+
 	@Transient
 	private Integer quantity;
+
+	public Item() {
+
+	}
+
+	public Item(Integer id, String name, Integer price, double avgpoint, String favorite) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.avgpoint = avgpoint;
+		this.favorite = favorite;
+
+	}
 
 	public Integer getId() {
 		return id;
@@ -73,6 +88,14 @@ public class Item {
 
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public String getFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(String favorite) {
+		this.favorite = favorite;
 	}
 
 }

@@ -32,6 +32,7 @@
 				<input type="hidden" name="itemId" th:value="${item.id}">
 				<button>削除</button>
 			</form>
+			<input type="hidden" name="quantity" th:value="${item.quantity}" form="order2">
 		</td>
 	</tr>
 	<tr>
@@ -43,9 +44,8 @@
 		<div style="display:inline-flex;">
 		<form action="/cart/adds" method ="post" id="order">
 			<button>注文</button> 
-		</form>
-		<form action="/items" method="get">
-			<button>商品一覧</button>
+	
+			<button  type="submit"  name="o"value="1">商品一覧</button>
 		</form>
 		</div><br>
 		<span th:text="${memo}"  style="color:red"></span>
