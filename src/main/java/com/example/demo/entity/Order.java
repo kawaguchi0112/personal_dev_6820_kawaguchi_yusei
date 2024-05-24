@@ -39,4 +39,32 @@ public class Order {
 	public Integer getId() {
 		return id;
 	}
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public LocalDate getOrderedOn() {
+		return orderedOn;
+	}
+
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
+	public void setOrderedOn(LocalDate orderedOn) {
+		this.orderedOn = orderedOn;
+	}
+
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }

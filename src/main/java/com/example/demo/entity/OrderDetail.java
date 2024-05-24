@@ -35,6 +35,13 @@ public class OrderDetail {
 		this.setQuantity(quantity);
 	}
 
+	public OrderDetail(Integer orderId, Integer itemId, Integer quantity, Integer customerId) {
+		this.orderId = orderId;
+		this.itemId = itemId;
+		this.setQuantity(quantity);
+		this.customerId = customerId;
+	}
+
 	public Integer getQuantity() {
 		return quantity;
 	}

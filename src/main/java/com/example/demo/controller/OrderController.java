@@ -163,7 +163,7 @@ public class OrderController {
 		Order order = new Order(
 				c.getId(),
 				LocalDate.now(),
-				cart.getTotalPrice());
+				cart.getTotalPrice() - points);
 		orderRepository.save(order);
 
 		// 3. 注文詳細情報をDBに格納する
@@ -174,7 +174,8 @@ public class OrderController {
 					new OrderDetail(
 							order.getId(),
 							item.getId(),
-							item.getQuantity()));
+							item.getQuantity(),
+							c.getId()));
 		}
 		orderDetailRepository.saveAll(orderDetails);
 

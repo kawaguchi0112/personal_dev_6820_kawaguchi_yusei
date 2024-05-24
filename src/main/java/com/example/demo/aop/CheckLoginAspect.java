@@ -38,6 +38,7 @@ public class CheckLoginAspect {
 			+ "execution(* com.example.demo.controller.CartController.*(..)) ||"
 			+ "execution(* com.example.demo.controller.MypageController.*(..)) ||"
 			+ "execution(* com.example.demo.controller.FovariteController.*(..)) ||"
+			+ "execution(* com.example.demo.controller.HistoryController.*(..)) ||"
 			+ "execution(* com.example.demo.controller.OrderController.*(..))")
 	public Object checkLogin(ProceedingJoinPoint jp) throws Throwable {
 

@@ -30,6 +30,9 @@ public class Item {
 	@Transient
 	private Integer quantity;
 
+	@Transient
+	private Integer history;
+
 	public Item() {
 
 	}
@@ -41,6 +44,14 @@ public class Item {
 		this.avgpoint = avgpoint;
 		this.favorite = favorite;
 
+	}
+
+	public Item(Integer id, String name, Integer price, Integer history, Integer quantity) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.history = history;
+		this.quantity = quantity;
 	}
 
 	public Integer getId() {
@@ -97,6 +108,14 @@ public class Item {
 
 	public void setFavorite(String favorite) {
 		this.favorite = favorite;
+	}
+
+	public Integer getHistory() {
+		return history;
+	}
+
+	public void setHistory(Integer history) {
+		this.history = history;
 	}
 
 }
