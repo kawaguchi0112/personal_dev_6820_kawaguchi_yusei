@@ -24,6 +24,7 @@ public class Item {
 
 	private double avgpoint;
 
+	@Transient
 	private String favorite;
 
 	@Transient

@@ -2,16 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>お気に入り</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 	<header th:replace="header"></header>
-	<hr>	<table border="1">
+	<hr>	
+	<h1>お気に入り</h1>
+	<table border="1">
 	<tr>
 		<th>NO</th>
 		<th>商品名</th>
 		<th>値段</th>
+		<th></th>
 		<th></th>
 	</tr>
 	<tr th:each="item:${list}">
@@ -24,9 +27,21 @@
 				<button>削除</button>
 			</form>
 		</td>
+		
+		<td>
+		<form action="/cart/add" method="post">
+						<input type="hidden" name="itemId"
+						th:value="${item.id}">
+						<button>カートに追加</button>
+					</form>
+		</td>
 	</tr>
 	
 </table>
+
+	<form action="/items" method="get">
+			<button>商品一覧</button>
+		</form>
 
 </body>
 </html>

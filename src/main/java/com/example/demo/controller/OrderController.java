@@ -68,18 +68,18 @@ public class OrderController {
 			@RequestParam(name = "o", defaultValue = "0") Integer o,
 			Model model) {
 
-		if (cart.getItems() == null || cart.getItems().size() == 0) {
-			model.addAttribute("memo", "商品がありません");
-			return "cart";
-
-		}
-
 		for (int i = 0; i < itemId.length; i++) {
 			cart.adds(itemId[i], quantity[i]);
 		}
 
 		if (o == 1) {
 			return "redirect:/items";
+		}
+
+		if (cart.getItems() == null || cart.getItems().size() == 0) {
+			model.addAttribute("memo", "商品がありません");
+			return "cart";
+
 		}
 		return "redirect:/order";
 
@@ -88,8 +88,8 @@ public class OrderController {
 	// 注文内容およびお客様情報内容の確認画面を表示
 	@PostMapping("/order/confirm")
 	public String confirm(
-			@RequestParam(name = "name") String name,
-			@RequestParam(name = "address") String address,
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "address", defaultValue = "") String address,
 			@RequestParam(name = "email") String email,
 			@RequestParam(name = "points", defaultValue = "0") Integer points,
 			Model model) {
@@ -106,7 +106,7 @@ public class OrderController {
 		if (c.getPoint() < points) {
 
 			model.addAttribute("customer", c);
-			model.addAttribute("mess", "ポイントが足りません");
+			model.addAttribute("mess", "ポイントが不足しています");
 			return "customerForm";
 		}
 
@@ -124,6 +124,20 @@ public class OrderController {
 		model.addAttribute("points", points);
 
 		model.addAttribute("customer", c);
+
+		List<String> list = new ArrayList<>();
+		if (name.equals("")) {
+			list.add("名前は必須です");
+		}
+		if (address.equals("")) {
+			list.add("住所は必須です");
+		}
+
+		if (list.size() > 0) {
+			model.addAttribute("lis", list);
+			model.addAttribute("customer", c);
+			return "customerForm";
+		}
 
 		return "orderConfirm";
 	}

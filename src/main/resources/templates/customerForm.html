@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>CustomerInfo</title>
+<title>注文画面</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -22,6 +22,10 @@
 		
 		<hr>
 		<h3>お客様情報</h3>
+		
+			<div th:each="mes:${lis}">
+		<span  th:text="${mes}" style="color:red" ></span> <br>
+		</div>
 		<form action="/order" method="post">
 			<table border="1">
 				<tr>

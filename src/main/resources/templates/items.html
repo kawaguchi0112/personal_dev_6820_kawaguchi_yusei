@@ -11,7 +11,7 @@
 	<nav>
 		<th:block th:if="${s==1}">
 		<form action="/items" method="get">
-		商品名<input type="text" name="keyword" th:value="${keyword}">|<input type="text" name="maxPrice" th:value="${maxPrice}">円以下
+		商品名<input type="text" name="keyword" th:value="${keyword}">|<input type="number" name="maxPrice" th:value="${maxPrice}" min="0">円以下
 		<button>検索</button>
 	</form>
 	
@@ -20,7 +20,7 @@
 	
 		<a href="/items?s=2">カテゴリー別表示</a>
 		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
-		<a href="/favorite">お気に入り</a>
+		<a href="/favorite">お気に入りを見る</a>
 		</th:block>
 		
 		<th:block th:if="${s==2}">
@@ -33,7 +33,7 @@
 	<main>
 		<table border="1">
 			<tr>
-				<th class="e">お気に</th>
+				<th class="">お気に</th>
 				<th>NO</th>
 				<th>商品</th>
 				<th>値段</th>

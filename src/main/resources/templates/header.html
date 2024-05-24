@@ -1,5 +1,5 @@
 <header>
-	<h1><a href="/items">Bチームショッピング</h1></a>
+	<h1>Bチームショッピング</h1>
 	<th:block th:if="${@account.name!=null}">
 	<span th:text="${@account.name}+'さんがログイン中'"></span>
 	<span id="rigth" th:text="'現在の所持ポイントは'+${@account.point}+'です'" style="color: yellowgreen;"></span>	
@@ -10,7 +10,8 @@
         <li><a href="/login">ログイン</a></li>
         <li><a href="/items">トップ</a></li>
         <li><a href="/Mypage">マイページ</a></li>
-        <li><a href="/order">カート</a></li>
+        <li><a href="/favorite">お気に入りを見る</a></li>
+        <li><a href="/cart">カート</a></li>
         <li><a href="/sigin">新規登録</a></li>
         <li><a href="/logout">ログアウト</a></li>
     </ul>

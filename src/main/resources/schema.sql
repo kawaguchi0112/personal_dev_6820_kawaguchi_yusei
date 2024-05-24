@@ -20,8 +20,7 @@ id SERIAL PRIMARY KEY,
 category_id INTEGER,	
 name TEXT,       	
 price INTEGER,
-avgpoint DECIMAL(2,1),
-favorite TEXT                               
+avgpoint DECIMAL(2,1)                            
 );
 -- 顧客テーブル　	
 CREATE TABLE customers	
@@ -50,7 +49,8 @@ CREATE TABLE order_details
 id SERIAL PRIMARY KEY,	
 order_id INTEGER,	
 item_id INTEGER,	
-quantity INTEGER	
+quantity INTEGER,
+customer_id INTEGER	
 );                             	
  --レビューテーブル                           	
 CREATE TABLE reviews	
