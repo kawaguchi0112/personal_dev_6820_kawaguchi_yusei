@@ -39,9 +39,10 @@ CREATE TABLE orders
 (                              	
 id SERIAL PRIMARY KEY,	
 customer_id INTEGER,	
-ordered_on DATE,	
-total_price INTEGER	
-                                	
+ordered_on DATE,
+payment INTEGER,	
+total_price INTEGER,
+usepoint INTEGER                            	
 );                             	
 -- 注文明細テーブル	
 CREATE TABLE order_details	

@@ -15,17 +15,35 @@
 	<tr>
 		<th class="t">NO</th>
 		<th>商品名</th>
-		<th>値段</th>
-		<th>個数</th>
+		<th class="t">値段</th>
+		<th class="e">個数</th>
 		
 	</tr>
 	<tr th:each="item:${i}">
 		<th:block th:if="${o.Id == item.history}">
-		<td th:text="${item.id}"></td>
+		<td th:text="${item.id}" ></td>
 		<td th:text="${item.name}"></td>
 		<td th:text="${item.price}"></td>
 		<td th:text="${item.quantity}"></td>
 		</th:block>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<th>合計金額</th>
+		<th th:text="${o.totalPrice}"></th>	
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<th>使用ポイント</th>
+		<th th:text="${o.usepoint}"></th>	
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<th>お支払い金額</th>
+		<th th:text="${o.payment}"></th>	
 	</tr>
 	
 </table>

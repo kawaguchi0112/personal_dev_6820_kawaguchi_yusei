@@ -22,17 +22,23 @@ public class Order {
 	@Column(name = "ordered_on")
 	private LocalDate orderedOn; // 注文日
 
+	private Integer payment;
+
 	@Column(name = "total_price")
 	private Integer totalPrice; // 合計金額
+
+	private Integer usepoint;
 
 	// コンストラクタ
 	public Order() {
 	}
 
-	public Order(Integer customerId, LocalDate orderedOn, Integer totalPrice) {
+	public Order(Integer customerId, LocalDate orderedOn, Integer payment, Integer totalPrice, Integer usepoint) {
 		this.customerId = customerId;
 		this.orderedOn = orderedOn;
+		this.payment = payment;
 		this.totalPrice = totalPrice;
+		this.usepoint = usepoint;
 	}
 
 	// ゲッター
@@ -66,5 +72,21 @@ public class Order {
 
 	public void setTotalPrice(Integer totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public Integer getPayment() {
+		return payment;
+	}
+
+	public Integer getUsepoint() {
+		return usepoint;
+	}
+
+	public void setPayment(Integer payment) {
+		this.payment = payment;
+	}
+
+	public void setUsepoint(Integer usepoint) {
+		this.usepoint = usepoint;
 	}
 }
