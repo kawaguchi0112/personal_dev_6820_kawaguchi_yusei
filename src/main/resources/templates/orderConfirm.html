@@ -13,7 +13,6 @@
 		<h3>ご注文商品</h3>
 		<table border="1">
 	<tr>
-		<th>NO</th>
 		<th>商品名</th>
 		<th>値段</th>
 		<th>個数</th>
@@ -21,7 +20,6 @@
 		
 	</tr>
 	<tr th:each="item:${@cart.items}">
-		<td th:text="${item.id}"></td>
 		<td th:text="${item.name}"></td>
 		<td th:text="${item.price}"></td>
 		<td th:text="${item.quantity}"></td>
@@ -50,6 +48,14 @@
 				<tr>
 					<th>住所</th>
 					<td th:text="${deaddress}"></td>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<td th:text="${detel}"></td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td th:text="${orderemail}"></td>
 				</tr>
 			</table>
 			<input type="hidden" name="name" th:value="${customer.name}">

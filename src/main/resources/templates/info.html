@@ -18,7 +18,6 @@
 		
 		<table border="1">
 			<tr>
-				<th>NO</th>
 				<th>商品</th>
 				<th>値段</th>
 				<th class="t">レビュー平均</th>
@@ -27,7 +26,6 @@
 			
 			</tr>
 			<tr>
-				<td th:text="${item.id}"></td>
 				<td th:text="${item.name}"></td>
 				<td th:text="${item.price}"></td>
 				<th>
@@ -124,14 +122,12 @@
 		
 		<table border="1">
 			<tr>
-				<th>NO</th>
 				<th>商品</th>
 				<th>値段</th>
 				<th>レビュー評価</th>
 				<th></th>
 			</tr>
 			<tr th:each="item:${list}">
-				<td th:text="${item.id}"></td>
 				<td><a th:href="@{/items/{ItemId}/info(ItemId=${item.id})}" method="get" th:text="${item.name}"></a></td>
 				<td th:text="${item.price}"></td>
 				<td th:text="${'★'+item.avgpoint}" style="color:gold"></td>	

@@ -1,7 +1,7 @@
 <header>
 	<h1>Bチームショッピング</h1>
 	<th:block th:if="${@account.name!=null}">
-	<span th:text="${@account.name}+'さんがログイン中'"></span>
+	<a  href="/Mypage" th:text="${@account.name}+'さんがログイン中'"></a>
 	<span id="rigth" th:text="'現在の所持ポイントは'+${@account.point}+'です'" style="color: rgb(255, 255, 255);"></span>	
 	</th:block>
 	

@@ -34,7 +34,6 @@
 		<table border="1">
 			<tr>
 				<th class="">お気に</th>
-				<th>NO</th>
 				<th>商品</th>
 				<th>値段</th>
 				<th>レビュー評価</th>
@@ -50,7 +49,6 @@
 					</block></button>
 					</form>
 					</td>
-				<td th:text="${item.id}"></td>
 				<td><a th:href="@{/items/{ItemId}/info(ItemId=${item.id})}" method="get" th:text="${item.name}"></a></td>
 				<td th:text="${item.price}"></td>
 				<td th:text="${'★'+item.avgpoint}" style="color:gold"></td>	

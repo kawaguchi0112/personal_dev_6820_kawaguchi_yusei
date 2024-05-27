@@ -23,7 +23,7 @@ INSERT INTO reviews(item_id, review, reviewpoint) VALUES(3, '失敗した', 2);
 INSERT INTO reviews(item_id, review, reviewpoint) VALUES(3, '細かいところが分からない', 1);
 INSERT INTO reviews(item_id, review, reviewpoint) VALUES(3, '読みずらい', 0);
 INSERT INTO reviews(item_id, review, reviewpoint) VALUES(4, '懐かしい気分になった', 5);
-INSERT INTO reviews(item_id, review, reviewpoint) VALUES(4, 'いらないアニメが多かった', 2);
+INSERT INTO reviews(item_id, review, reviewpoint) VALUES(4, 'しらないアニメが多かった', 2);
 INSERT INTO reviews(item_id, review, reviewpoint) VALUES(4, '普通に面白かった', 4);
 INSERT INTO reviews(item_id, review, reviewpoint) VALUES(4, '面白かった', 3);
 INSERT INTO reviews(item_id, review, reviewpoint) VALUES(4, '懐かしい', 3);

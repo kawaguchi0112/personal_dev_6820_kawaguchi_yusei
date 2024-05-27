@@ -90,12 +90,16 @@ public class OrderController {
 	public String confirm(
 			@RequestParam(name = "name", defaultValue = "") String name,
 			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "orderemail", defaultValue = "") String orderemail,
 			@RequestParam(name = "email") String email,
 			@RequestParam(name = "points", defaultValue = "0") Integer points,
 			Model model) {
 
 		model.addAttribute("dename", name);
 		model.addAttribute("deaddress", address);
+		model.addAttribute("detel", tel);
+		model.addAttribute("orderemail", orderemail);
 		model.addAttribute("points", points);
 
 		// お客様情報をまとめる
@@ -131,6 +135,12 @@ public class OrderController {
 		}
 		if (address.equals("")) {
 			list.add("住所は必須です");
+		}
+		if (tel.equals("")) {
+			list.add("電話番号は必須です");
+		}
+		if (orderemail.equals("")) {
+			list.add("メールアドレスは必須です");
 		}
 
 		if (list.size() > 0) {
